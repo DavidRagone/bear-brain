@@ -32,10 +32,10 @@ To keep up to date:
 ./bear-sync.sh
 ```
 
-  •  Reads Bear’s DB (safe, read-only snapshot)
-  •  Diffs against the last sync timestamp
-  •  Splits changed notes into heading-aware overlapping chunks
-  •  Embeds new/updated chunks into the bear_chunks collection in brain.db
+*  Reads Bear’s DB (safe, read-only snapshot)
+*  Diffs against the last sync timestamp
+*  Splits changed notes into heading-aware overlapping chunks
+*  Embeds new/updated chunks into the bear_chunks collection in brain.db
 
 Run manually, via a cron/launchd job, or trigger before queries.
 
@@ -48,17 +48,17 @@ Run manually, via a cron/launchd job, or trigger before queries.
 ```
 
 Options:
-  •  -m <model> → pick a specific model (e.g. one hosted in LM Studio or OpenAI)
-  •  Uses --no-stream by default for reliability
-  •  Pulls top-K similar chunks, adds them as context, and asks the LLM to answer with [ID] citations
+*  -m <model> → pick a specific model (e.g. one hosted in LM Studio or OpenAI)
+*  Uses --no-stream by default for reliability
+*  Pulls top-K similar chunks, adds them as context, and asks the LLM to answer with [ID] citations
 
 ⸻
 
 ## How It Works
-  •  Chunking: Notes are split on Markdown headers (#, ##, etc.) with overlapping windows (~1200 chars, 200 overlap). Each chunk has a stable chunk_id.
-  •  Embeddings: Stored with content (--store) so retrieval returns text directly.
-  •  Incremental sync: Only re-embeds notes that changed since the last run.
-  •  Collection: All embeddings live in the bear_chunks collection.
+*  Chunking: Notes are split on Markdown headers (#, ##, etc.) with overlapping windows (~1200 chars, 200 overlap). Each chunk has a stable chunk_id.
+*  Embeddings: Stored with content (--store) so retrieval returns text directly.
+*  Incremental sync: Only re-embeds notes that changed since the last run.
+*  Collection: All embeddings live in the bear_chunks collection.
 
 ⸻
 
